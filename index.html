@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Backlog Grooming Co-Pilot | Arvutionu.ee</title>
+  <meta name="description" content="ChatGPT-põhine Backlog Grooming Co-Pilot, mis aitab sul korrastada Jira/Trello backlog'i, leida duplikaate ja seada prioriteete value vs effort alusel." />
+  <meta name="author" content="Arvutionu.ee" />
+
+  <!-- Vapor Bootstrap 5 (Bootswatch) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/vapor/bootstrap.min.css" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">
+        <span class="logo-pill me-2">AI</span> Backlog Grooming Co-Pilot
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item">
+            <a class="nav-link" href="#how-it-works">Kuidas töötab</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#use-cases">25 näidist</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#pricing">Tiimidele</a>
+          </li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <a class="btn btn-primary btn-sm" href="#cta">Broneeri demo</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="py-5 hero-section">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <div class="glass-card p-4 p-lg-5 mb-4 mb-lg-0">
+            <h1 class="display-5 fw-bold mb-3">
+              Backlog Grooming Co-Pilot
+            </h1>
+            <p class="lead text-secondary mb-4">
+              Lase LLM-il lugeda Jira / Trello backlog läbi, tuvastada duplikaadid, 
+              ebamäärased piletid ja soovitada prioriteete – enne kui tiim grooming'u koosolekule jõuab.
+            </p>
+            <ul class="list-unstyled small text-secondary mb-4 hero-list">
+              <li>• Automaatne <strong>value vs effort</strong> skoor igale piletile</li>
+              <li>• Duplikaatide ja sarnaste piletite tuvastamine</li>
+              <li>• Grooming'u ettevalmistus pressib backlog'i <strong>pool väiksemaks</strong></li>
+            </ul>
+            <div class="d-flex flex-column flex-md-row gap-3">
+              <a href="#use-cases" class="btn btn-primary btn-lg">
+                Vaata 25 valmis prompti
+              </a>
+              <a href="#cta" class="btn btn-outline-light btn-lg">
+                Küsi pakkumist tiimile
+              </a>
+            </div>
+            <p class="mt-3 mb-0 text-muted small">
+              Domeen: <strong>Arvutionu.ee</strong> · Tel: <a href="tel:+37253359094" class="link-muted">+372 5335 9094</a> · 
+              E-mail: <a href="mailto:info@arvutionu.ee" class="link-muted">info@arvutionu.ee</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="glass-card p-4 p-lg-4">
+            <h2 class="h5 mb-3">Vali kohe kasutusjuht – kopeerid prompti ja oled valmis</h2>
+            <div class="mb-3">
+              <label for="useCaseSelect" class="form-label small text-uppercase text-muted mb-1">
+                25 näidist
+              </label>
+              <select id="useCaseSelect" class="form-select form-select-sm">
+                <!-- JS täidab -->
+              </select>
+            </div>
+            <div id="useCaseDetails" class="use-case-details">
+              <!-- JS täidab kaardi -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HOW IT WORKS -->
+  <section id="how-it-works" class="py-5 border-top border-secondary-subtle">
+    <div class="container">
+      <div class="row mb-4 align-items-end">
+        <div class="col-md-8">
+          <h2 class="h3 mb-2">Kuidas Backlog Grooming Co-Pilot töötab</h2>
+          <p class="text-secondary mb-0">
+            Eesmärk ei ole “LLM maagia”, vaid väga konkreetne töövoog: backlog korrastamine enne, kui inimesed üldse aega kulutavad.
+          </p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="step-card glass-card h-100 p-4">
+            <div class="step-number">1</div>
+            <h3 class="h5 mb-2">Sisend: backlog ja kontekst</h3>
+            <p class="small text-secondary mb-0">
+              Ekspordi Jira / Trello backlog CSV või API kaudu, lisa ärikontekst (OKR-id, segment, sihtturg) 
+              ning anna Co-Pilotile selge roll: “backlog groomingu assistent”.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="step-card glass-card h-100 p-4">
+            <div class="step-number">2</div>
+            <h3 class="h5 mb-2">Analüüs: duplikaadid + value vs effort</h3>
+            <p class="small text-secondary mb-0">
+              LLM grupeerib sarnased piletid, otsib duplikaate, hindab ärimõju ja tehnilist keerukust ning pakub konkreetse prioriteedijärjestuse.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="step-card glass-card h-100 p-4">
+            <div class="step-number">3</div>
+            <h3 class="h5 mb-2">Väljund: groomingu-ready backlog</h3>
+            <p class="small text-secondary mb-0">
+              Saad “puhastatud” backlog’i, kus on vähem müra, rohkem fookust ning selged märgendid: duplikaat, ebamäärane, kiire võit, strateegiline panus.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USE CASES -->
+  <section id="use-cases" class="py-5">
+    <div class="container">
+      <div class="row mb-4 align-items-end">
+        <div class="col-md-8">
+          <h2 class="h3 mb-2">25 valmis prompti erinevateks backlog-situatsioonideks</h2>
+          <p class="text-secondary mb-0">
+            Kasuta lehel olevat rippmenüüd, kopeeri prompt ja kasuta seda otse oma LLM-is (nt ChatGPT, OpenAI API või muu tööriist).
+          </p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-7">
+          <div class="glass-card p-4 h-100">
+            <h3 class="h5 mb-3">Rippmenüü dubleerib hero ploki valikuid</h3>
+            <p class="small text-secondary mb-3">
+              Kõik 25 näidist on sama valikute komplekt, mida näed ka lehe ülaservas. 
+              Idee on lihtne: Product Owner või tiimiliige ei pea ise prompti leiutama – ta valib olukorra ja süsteem annab ette optimeeritud sõnastuse.
+            </p>
+            <ul class="small text-secondary mb-0">
+              <li>• PO/PM saab kohe kasutada “battle-tested” prompti, mitte ei alusta tühjalt lehelt.</li>
+              <li>• Vajadusel kohanda ainult tiimi sõnavara, Jira väljade nimesid või sisemist skooringuloogikat.</li>
+              <li>• Sobib nii väikesele startupile kui suurele enterprise-tiimile, kus backlog ulatub tuhandete piletiteni.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="glass-card p-4 h-100">
+            <h3 class="h5 mb-3">Mida need promptid eeldavad?</h3>
+            <ul class="small text-secondary mb-0">
+              <li>• Sul on ligipääs LLM-ile (nt ChatGPT või oma OpenAI integratsioon).</li>
+              <li>• Saad vajadusel eksportida või kopeerida backlog’i teksti kujul.</li>
+              <li>• Tiimil on kokkulepitud, mida “value” ja “effort” teie kontekstis tähendavad.</li>
+              <li>• Oled valmis tulemusi kriitiliselt üle vaatama – Co-Pilot ei asenda otsustamist, vaid kiirendab seda.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING / FOR TEAMS -->
+  <section id="pricing" class="py-5 border-top border-secondary-subtle">
+    <div class="container">
+      <div class="row mb-4 align-items-end">
+        <div class="col-md-8">
+          <h2 class="h3 mb-2">Kuidas tuua Backlog Grooming Co-Pilot oma tiimi</h2>
+          <p class="text-secondary mb-0">
+            Teeme minimaalse elujõulise versiooni (MVP), mis sobitub sinu stack'i ja protsessiga – mitte abstraktne demo, vaid päris tööriist.
+          </p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="glass-card p-4 h-100">
+            <h3 class="h6 text-uppercase text-muted mb-2">Starter</h3>
+            <h4 class="h4 mb-2">PO + 1 tiim</h4>
+            <p class="small text-secondary mb-3">
+              Üks backlog, üks tiim. Fookuses on üks Jira/Trello projekt ja selge ROI: 
+              mitu tundi grooming'u eeltööd asendame LLM-iga.
+            </p>
+            <ul class="small text-secondary mb-3">
+              <li>• 1 integreeritud backlog (Jira / Trello / CSV)</li>
+              <li>• 10–15 kohandatud prompti</li>
+              <li>• Lihtne web UI Backlog Grooming Co-Pilotile</li>
+            </ul>
+            <p class="small text-muted mb-0">Sobib tiimile, kes tahab alustada kiiresti ja mõõta mõju.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="glass-card p-4 h-100 featured-plan">
+            <h3 class="h6 text-uppercase text-warning mb-2">Growth</h3>
+            <h4 class="h4 mb-2">Mitme tiimi tugi</h4>
+            <p class="small text-secondary mb-3">
+              Mitme toote või squad'iga organisatsioon, kus backlog on killustunud ja duplikaate on palju.
+            </p>
+            <ul class="small text-secondary mb-3">
+              <li>• 3–5 backlog'i / projekti integratsioon</li>
+              <li>• Täpsem value/impact skoori loogika</li>
+              <li>• Rollipõhised vaated (PO, tiimijuht, juhtkond)</li>
+            </ul>
+            <p class="small text-muted mb-0">Optimeeritud kasvufaasis ettevõtetele, kes tahavad fookust.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="glass-card p-4 h-100">
+            <h3 class="h6 text-uppercase text-muted mb-2">Enterprise</h3>
+            <h4 class="h4 mb-2">Custom stack</h4>
+            <p class="small text-secondary mb-3">
+              SSO, oma LLM endpoint, privaatne andmekäitlus ja spetsiifilised töövood (scale-ups, korporatsioonid).
+            </p>
+            <ul class="small text-secondary mb-3">
+              <li>• Kuni X backlog'i ja projektid</li>
+              <li>• Oma LLM endpoint / VPC</li>
+              <li>• Täiustatud audit- ja logimisnõuded</li>
+            </ul>
+            <p class="small text-muted mb-0">Arutame arhitektuuri ja turvanõudeid enne disaini.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta" class="py-5 border-top border-secondary-subtle">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-7">
+          <div class="glass-card p-4 p-lg-5 h-100">
+            <h2 class="h3 mb-3">Tahad näha oma backlog'i läbi Co-Piloti silmade?</h2>
+            <p class="text-secondary mb-3">
+              Vali üks Jira/Trello projekt, võta 200–500 piletit ning teeme pilootanalüüsi: 
+              kui palju duplikaate, kui palju ebamääraseid pileteid ja mis on potentsiaalne grooming'u ajavõit.
+            </p>
+            <ul class="small text-secondary mb-3">
+              <li>• Mõõdetav ajavõit grooming'u ettevalmistusel.</li>
+              <li>• Läbipaistev skooringuloogika – PO kontrollib, mitte LLM.</li>
+              <li>• Võimalus integreerida otse sinu olemasolevatesse tööriistadesse.</li>
+            </ul>
+            <p class="small text-muted mb-0">
+              Saada kiri aadressile <a href="mailto:info@arvutionu.ee" class="link-muted">info@arvutionu.ee</a> 
+              või helista <a href="tel:+37253359094" class="link-muted">+372 5335 9094</a> – leppime kokku 30-minutilise töötoa.
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="glass-card p-4 h-100">
+            <h3 class="h5 mb-3">Kiire kontaktivorm</h3>
+            <form>
+              <div class="mb-3">
+                <label class="form-label small text-uppercase text-muted">Nimi</label>
+                <input type="text" class="form-control form-control-sm" placeholder="Sinu nimi" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label small text-uppercase text-muted">E-mail</label>
+                <input type="email" class="form-control form-control-sm" placeholder="nimi@ettevote.ee" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label small text-uppercase text-muted">Lühikirjeldus</label>
+                <textarea class="form-control form-control-sm" rows="3" placeholder="Mitu tiimi, milline tööriist (Jira/Trello), kui suur backlog?"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">
+                Saada huvi
+              </button>
+              <p class="small text-muted mt-2 mb-0">
+                Vorm on demo – tegelik lahendus integreeritakse sinu stack'i ja turvanõuetega.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-4 border-top border-secondary-subtle small text-secondary">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <div>
+        © <span id="year"></span> Arvutionu.ee – Backlog Grooming Co-Pilot
+      </div>
+      <div class="text-md-end">
+        Tel: <a href="tel:+37253359094" class="link-muted">+372 5335 9094</a> ·
+        E-mail: <a href="mailto:info@arvutionu.ee" class="link-muted">info@arvutionu.ee</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS (optional, for navbar toggler) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
