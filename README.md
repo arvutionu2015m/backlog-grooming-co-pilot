@@ -2,6 +2,8 @@
 
 See ZIP sisaldab minimaalset, kuid praktilist maandumislehte teenusele **Backlog Grooming Co-Pilot** – ChatGPT/LLM-põhine abiline, mis aitab Product Owneritel ja tiimidel oma backlog'i korrastada, duplikaate leida ning piletitele value vs effort skoori anda.
 
+![](https://github.com/arvutionu2015m/backlog-grooming-co-pilot/blob/main/Backlog.png)
+
 ## Failistruktuur
 
 - `index.html` – põhileht (Vapor Bootstrap 5 stiilis), SEO-sõbralik ja mobiilisõbralik.
